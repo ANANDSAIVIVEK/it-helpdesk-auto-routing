@@ -1,0 +1,41 @@
+(function executeRule(current, previous /*null when async*/) {
+
+	var category    = current.category.toString();
+    var subcategory = current.subcategory.toString();
+    var priority    = parseInt(current.priority.toString());
+
+	// Routing map: category → assignment group sys_id or name
+    var routingMap = {
+        'hardware': 'IT-Hardware-Support',
+        'network':  'IT-Network-Support',
+        'software': 'IT-Software-Support',
+        'security': 'IT-Security-Incidents'
+    };
+
+	// Priority 1 always goes to Security/Escalation team
+    if (priority === 1) {
+        setGroup('IT-Security-Incidents');
+        current.escalation = 1;
+        return;
+    }
+
+	// Route by category
+    var targetGroup = routingMap[category];
+    if (targetGroup) {
+        setGroup(targetGroup);
+    } else {
+        // Default fallback
+        setGroup('IT-Help-Desk-Tier1');
+    }
+
+	// Helper: set assignment group by name
+    function setGroup(groupName) {
+        var grp = new GlideRecord('sys_user_group');
+        grp.addQuery('name', groupName);
+        grp.query();
+        if (grp.next()) {
+            current.assignment_group = grp.sys_id;
+        }
+    }
+
+})(current, previous);

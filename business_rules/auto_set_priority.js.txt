@@ -1,0 +1,16 @@
+(function executeRule(current, previous /*null when async*/) {
+
+	var urgency = parseInt(current.urgency.toString());
+    var impact  = parseInt(current.impact.toString());
+
+	// Priority matrix (1=Critical, 4=Low)
+    var matrix = {
+        '1-1': 1, '1-2': 2, '1-3': 2,
+        '2-1': 2, '2-2': 3, '2-3': 3,
+        '3-1': 3, '3-2': 3, '3-3': 4
+    };
+
+	var key = urgency + '-' + impact;
+    current.priority = matrix[key] || 4;
+
+})(current, previous);
