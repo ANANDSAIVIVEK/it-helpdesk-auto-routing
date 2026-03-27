@@ -38,5 +38,22 @@ triage.
 - [ ] Performance Analytics dashboard
 - [ ] Full deployment & testing
 
+## Installation
+
+1. Download the update set XML from `/update_sets/`
+2. In ServiceNow go to:
+   `System Update Sets → Retrieved Update Sets → Import Update Set from XML`
+3. Upload the XML file
+4. Click `Preview Update Set` → then `Commit Update Set`
+5. All configurations will be automatically installed
+
+## What's Included in the Update Set
+- Auto-routing Business Rule (category → assignment group)
+- Auto-priority Business Rule (urgency × impact matrix)
+- SLA definitions (P1–P4 with escalation)
+- Email notifications (assignment + acknowledgement + SLA warnings)
+- Auto-closure Flow (3-day resolved → closed)
+- SLA breach auto-escalation Business Rule
+
 ## Author
 Chandu Anand Sai Vivek — [LinkedIn]([https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/anand-sai-vivek-chandu/))
