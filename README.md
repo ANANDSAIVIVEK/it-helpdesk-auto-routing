@@ -8,9 +8,6 @@ classifies incoming IT incidents using keyword/NLP detection and
 routes them to the correct assignment group — eliminating manual
 triage.
 
-## Status
-> 🚧 In Development — core Business Rules and routing logic complete.
-> Full deployment and testing in progress.
 
 ## Features
 - Auto-classification by category (Hardware, Network, Software, Security)
